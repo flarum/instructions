@@ -1,12 +1,20 @@
-<?php namespace Flarum\Instructions\Listeners;
+<?php
 
-use Flarum\Events\RegisterLocales;
+/*
+ * This file is part of Flarum.
+ *
+ * For detailed copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+namespace Flarum\Instructions\Listeners;
+
+use Flarum\Api\Serializers\ForumSerializer;
+use Flarum\Core\Formatter\Formatter;
+use Flarum\Core\Settings\SettingsRepository;
 use Flarum\Events\ApiAttributes;
 use Flarum\Events\SerializeConfig;
 use Flarum\Events\UnserializeConfig;
-use Flarum\Core\Settings\SettingsRepository;
-use Flarum\Core\Formatter\Formatter;
-use Flarum\Api\Serializers\ForumSerializer;
 use Illuminate\Contracts\Events\Dispatcher;
 
 class AddApiAttributes
@@ -53,11 +61,11 @@ class AddApiAttributes
 
     public function unparseInstructions(UnserializeConfig $event)
     {
-        if (! empty($event->config['instructions.start_instructions'])) {
+        if (!empty($event->config['instructions.start_instructions'])) {
             $event->config['instructions.start_instructions'] = $this->formatter->unparse($event->config['instructions.start_instructions']);
         }
 
-        if (! empty($event->config['instructions.reply_instructions'])) {
+        if (!empty($event->config['instructions.reply_instructions'])) {
             $event->config['instructions.reply_instructions'] = $this->formatter->unparse($event->config['instructions.reply_instructions']);
         }
     }

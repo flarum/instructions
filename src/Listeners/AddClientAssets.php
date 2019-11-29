@@ -1,7 +1,16 @@
-<?php namespace Flarum\Instructions\Listeners;
+<?php
 
-use Flarum\Events\RegisterLocales;
+/*
+ * This file is part of Flarum.
+ *
+ * For detailed copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+namespace Flarum\Instructions\Listeners;
+
 use Flarum\Events\BuildClientView;
+use Flarum\Events\RegisterLocales;
 use Illuminate\Contracts\Events\Dispatcher;
 
 class AddClientAssets
@@ -21,7 +30,7 @@ class AddClientAssets
     {
         $event->forumAssets([
             __DIR__.'/../../js/forum/dist/extension.js',
-            __DIR__.'/../../less/forum/extension.less'
+            __DIR__.'/../../less/forum/extension.less',
         ]);
 
         $event->forumBootstrapper('instructions/main');
@@ -32,7 +41,7 @@ class AddClientAssets
 
         $event->adminAssets([
             __DIR__.'/../../js/admin/dist/extension.js',
-            __DIR__.'/../../less/admin/extension.less'
+            __DIR__.'/../../less/admin/extension.less',
         ]);
 
         $event->adminBootstrapper('instructions/main');
